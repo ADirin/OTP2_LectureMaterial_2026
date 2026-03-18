@@ -23,11 +23,17 @@ Instructor: Amir Dirin
 ## 1.2 Extract & Install
 - ➢ Locate the downloaded ZIP file.
 - ➢ Extract it to a directory of your choice (e.g., C:\SonarQube on Windows or /opt/SonarQube on Linux).
-- ➢ Open terminal (CMD or PowerShell), navigate to: // or the location which you have saved,
-    - for exampleat:C:\sonarqube\bin\windows-x86-xx\
-
-
-StartSonar.bat
+- ➢ Open terminal (CMD or PowerShell), navigate to: // or the location which you have saved, for exampleat:
+    - C:\sonarqube\bin\windows-x86-xx\
+    - ➢ Run the engine
+        ````
+        StartSonar.bat
+        ````
+    - For example, I have installed SonarQube in the following folder:
+        ```
+        PS C:\Users\amirdi\Documents\Spring2025\SonarQube\sonarqube-25.3.0.104237\bin\windows-x86-64> .\StartSonar.bat
+        
+        ```
 
 Open browser: http://localhost:9000
 
