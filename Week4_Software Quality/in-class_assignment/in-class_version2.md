@@ -58,7 +58,8 @@ Default login:
 -  Make sure it’s a Maven or Gradle project (easiest to integrate)
 -  In your root project directory, create or update sonar-project.properties:
 
-![SonarQube](/Images/SQ1)
+![SonarQube](/Images/SQ1.jpg)
+
 Generate token in SonarQube:  
 My Account → Security → Generate Token
 
