@@ -36,7 +36,7 @@ Instructor: Amir Dirin
        
   ```
 
-Open browser: http://localhost:9000
+- ➢ Open browser: http://localhost:9000
 
 Default login:
 - Username: admin
