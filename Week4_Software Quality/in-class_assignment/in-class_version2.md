@@ -41,14 +41,17 @@ Instructor: Amir Dirin
 Default login:
 - Username: admin
 - Password: admin
+  
+**Note** make sure to save the new password if you change
 
 # Step 2: Install SonarScanner
-Download: https://docs.sonarsource.com/sonarqube/latest/analysis/scan/sonarscanner/
-
-Extract to: C:\sonarscanner  
-Add to PATH: C:\sonarscanner\bin  
-Add variable:
-- SONAR_SCANNER_HOME = C:\sonarscanner
+- Download: https://docs.sonarsource.com/sonarqube/latest/analysis/scan/sonarscanner/
+- Extract to: C:\sonarscanner
+- Add to your environment variables:
+  - Add C:\sonarscanner\bin to PATH // make sure that the path is correct in your machine
+  - Set a new system variable:
+      - **Key:** SONAR_SCANNER_HOME
+      - **Value:** C:\sonarscanner
 
 # Step 3: Prepare IntelliJ Project
 Create or update sonar-project.properties in the root folder.
