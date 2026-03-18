@@ -48,7 +48,7 @@ Set up:
 
 - ➢ Open browser: http://localhost:9000
 
-Default login:
+🔐  Default login:
 - Username: admin
 - Password: admin
   
@@ -63,7 +63,7 @@ Default login:
       - **Key:** SONAR_SCANNER_HOME
       - **Value:** C:\sonarscanner
 
-# Step 3: Prepare IntelliJ Project
+# 💻 Step 3: Prepare IntelliJ Project
 - Open your project in IntelliJ
 -  Make sure it’s a Maven or Gradle project (easiest to integrate)
 -  In your root project directory, create or update sonar-project.properties:
