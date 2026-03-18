@@ -8,7 +8,7 @@ Instructor: Amir Dirin
 > *Important:* SonarQube works best with JDK 17. If everything is installed but the scanner does not work, ensure JAVA_HOME points to JDK 17.
 
 ---
-## Prerequisites for installation
+##  ✅ Prerequisites for installation
 - Java JDK 17+
 - SonarQube
 - SonarScanner
@@ -24,7 +24,7 @@ Set up:
 - IntelliJ integration  
 
 -------------------------------------
-# Step 1: Install SonarQube
+# 🧩 Step 1: Install SonarQube
 ## 1.1 Download SonarQube
 - Go to the [SonarQube Downloads page] (https://www.sonarsource.com/products/sonarqube/downloads/)
 - Choose the version you want to install (the latest stable version is recommended).
@@ -35,7 +35,7 @@ Set up:
 - ➢ Extract it to a directory of your choice (e.g., C:\SonarQube on Windows or /opt/SonarQube on Linux).
 - ➢ Open terminal (CMD or PowerShell), navigate to: // or the location which you have saved, for exampleat:
 - C:\sonarqube\bin\windows-x86-xx\
-- ➢ Run the engine
+- ➢📌 Run the engine
     ````
     StartSonar.bat
     ````
