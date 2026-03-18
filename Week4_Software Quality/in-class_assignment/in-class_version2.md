@@ -63,10 +63,7 @@ Default login:
 
 To generate your own token, follow the steps below. Note that the location of the token generation option mayvary depending on the version of SonarQube (Depending on the version of SonarQube, the location of generatetoken may change)
 
-    **In SonarQube → Top right corner → "My Account" → "Security" → Generate Token**
-
-Generate token in SonarQube:  
-My Account → Security → Generate Token
+**In SonarQube → Top right corner → "My Account" → "Security" → Generate Token**
 
 # Step 4: Run SonarScanner
 Run in project directory:
