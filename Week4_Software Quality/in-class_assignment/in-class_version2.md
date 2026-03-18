@@ -119,7 +119,8 @@ Adding coverage code may solve the problem to pass
 -----------------------------
 ## Potential error 
 ### Make sure you have use proper jdk by testing
-
-c:/ Where java
-Make sure that the proper java version is set in Environment Variables system Path
+````
+ c:/ Where java
+````
+- Make sure that the proper java version is set in Environment Variables system Path
 ![SonarQube](/Images/SQ6.jpg)
