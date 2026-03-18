@@ -9,11 +9,11 @@ Instructor: Amir Dirin
 
 ---
 ## Prerequisites for installation
-> Java JDK 17+
-> SonarQube
-> SonarScanner
-> IntelliJ IDEA
-> Optional: Maven/Gradle project
+- Java JDK 17+
+- SonarQube
+- SonarScanner
+- IntelliJ IDEA
+- Optional: Maven/Gradle project
 
 
 # Step 1: Install SonarQube
