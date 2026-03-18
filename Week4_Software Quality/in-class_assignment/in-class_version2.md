@@ -11,7 +11,7 @@ Instructor: Amir Dirin
 > Java JDK 17+
 > SonarQube
 > SonarScanner
-- IntelliJ IDEA
+> IntelliJ IDEA
 > Optional: Maven/Gradle project
 ---
 
