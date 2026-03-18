@@ -65,12 +65,18 @@ To generate your own token, follow the steps below. Note that the location of th
 
 **In SonarQube → Top right corner → "My Account" → "Security" → Generate Token**
 
+![SonarQube](/Images/SQ2.jpg)
+
 # Step 4: Run SonarScanner
-Run in project directory:
+✓ In your project directory: run the sonar-scanner
+
+![SonarQube](/Images/SQ3.jpg)
 
 sonar-scanner
 
-View results at: http://localhost:9000/projects
+✓ You’ll see analysis logs, and once completed, you can view results in the SonarQube dashboard:
+
+http://localhost:9000/projects
 
 # Example Code
 ```java
