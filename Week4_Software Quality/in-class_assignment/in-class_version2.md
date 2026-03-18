@@ -8,7 +8,7 @@ Instructor: Amir Dirin
 > *Important:* SonarQube works best with JDK 17. If everything is installed but the scanner does not work, ensure JAVA_HOME points to JDK 17.
 
 ---
-> ## Prerequisites for installation
+## Prerequisites for installation
 > Java JDK 17+
 > SonarQube
 > SonarScanner
