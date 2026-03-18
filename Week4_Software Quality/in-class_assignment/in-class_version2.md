@@ -103,21 +103,23 @@ public class Main {
     }
 }
 ````
+![SonarQube](/Images/SQ4.jpg)
+
+
 ## Notes
 
-- Code may pass inside IntelliJ but fail on localhost.
-- Adding coverage code can help.
-- Test project: https://github.com/ADirin/SonarQube-_SonarScanner.git
+- The code passes successfully in SonarQube within IntelliJ, but not on the localhost. I couldn’t identify the reasonit only passed once with the same code
+![SonarQube](/Images/SQ5.jpg)
 
-## Check Java Version
-Run:
-- where java
-- Ensure Java 17 is set correctly in Environment Variables → System PATH.
+Adding coverage code may solve the problem to pass
+- You may clone the code and test that SonarQube and the Scanner are working properly.
+    - https://github.com/ADirin/SonarQube-_SonarScanner.git
 
----
 
-If you want, I can also generate:
+-----------------------------
+## Potential error 
+### Make sure you have use proper jdk by testing
 
-• A version with **badges**  
-• A version with **emoji section headers**  
-• A version formatted as a **GitHub Wiki page**
+c:/ Where java
+Make sure that the proper java version is set in Environment Variables system Path
+![SonarQube](/Images/SQ6.jpg)
