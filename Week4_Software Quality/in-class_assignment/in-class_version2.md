@@ -15,14 +15,15 @@ Instructor: Amir Dirin
 - IntelliJ IDEA
 - Optional: Maven/Gradle project
 --------------------
-## 🎯 Objective
+
+## 🎯 Objective of the assignment
 
 Set up:
 - SonarQube  
 - SonarScanner  
 - IntelliJ integration  
 
-
+-------------------------------------
 # Step 1: Install SonarQube
 ## 1.1 Download SonarQube
 - Go to the [SonarQube Downloads page] (https://www.sonarsource.com/products/sonarqube/downloads/)
