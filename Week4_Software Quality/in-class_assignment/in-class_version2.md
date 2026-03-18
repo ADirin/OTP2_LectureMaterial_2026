@@ -70,7 +70,7 @@ To generate your own token, follow the steps below. Note that the location of th
 # Step 4: Run SonarScanner
 ✓ In your project directory: run the sonar-scanner
 
-![SonarQube](/Images/SQ3.jpg)
+![SonarQube](/Images/SQ31.jpg)
 
 sonar-scanner
 
