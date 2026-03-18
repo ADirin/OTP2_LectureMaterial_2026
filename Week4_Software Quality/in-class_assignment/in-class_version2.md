@@ -54,8 +54,11 @@ Default login:
       - **Value:** C:\sonarscanner
 
 # Step 3: Prepare IntelliJ Project
-Create or update sonar-project.properties in the root folder.
+- Open your project in IntelliJ
+-  Make sure it’s a Maven or Gradle project (easiest to integrate)
+-  In your root project directory, create or update sonar-project.properties:
 
+![SonarQube](/Images/SQ1)
 Generate token in SonarQube:  
 My Account → Security → Generate Token
 
