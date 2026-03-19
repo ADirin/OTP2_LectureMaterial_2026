@@ -34,14 +34,14 @@ This exercise demonstrates how to create a JavaFX-based fuel consumption calcula
 
 The layout uses a `VBox` container and includes:
 
-### • Labels
+### Labels
 - `lblDistance` → "Distance" field  
 - `lblFuel` → "Fuel" field  
 - `lblResult` → Displays result or error messages  
 
-### • Text Fields
+### Text Fields
 - `txtDistance` → Input for distance  
-- `txtFuel` → Input for fuel  
+- `txtFuel` → Input for fuel
 
 ### • Buttons
 - `btnCalculate` → Triggers calculation  
@@ -153,7 +153,7 @@ Consommation de carburant: 8,00 L/100 km
 
 ---
 
-If you want, I can also **optimize this README for grading (add badges, screenshots section, or repo structure)** 👍
+
 
 
 
