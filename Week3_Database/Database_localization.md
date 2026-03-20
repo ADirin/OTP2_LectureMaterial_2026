@@ -2,6 +2,8 @@
 
 [fx_DB_Docker](https://github.com/ADirin/fx_db_dockerImage.git)
 
+[database_minikubes]https://github.com/ADirin/otp2_week4_bmi_minikubernet.git
+
 [WSL set up in windows] (https://winsides.com/how-to-install-and-run-x-server-in-windows-11/)
 
 Localization in databases refers to adapting data to suit the language, cultural, and regional preferences of different users. In relational databases, localization becomes essential when applications serve a global audience and require support for multiple languages and regions.
