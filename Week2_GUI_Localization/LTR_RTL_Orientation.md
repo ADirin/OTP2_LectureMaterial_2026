@@ -1,6 +1,6 @@
 # JavaFX UI Orientation Guide
 ### Switching Between LTR and Right-to-Left (RTL)
-> Based on `BMIController.java` — Student Reference
+> Based on `BMIController.java` 
 
 ---
 
