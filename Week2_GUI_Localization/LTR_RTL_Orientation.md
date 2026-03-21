@@ -501,6 +501,73 @@ private void setLanguage(Locale locale) {
 }
 ```
 
+
+## 4.1 Localization Service
+
+**File**`src/main/java/org/example/ltrrtl/service/LocalizationService.java`
+```
+package org.example.ltrrtl.service;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
+
+public class LocalizationService {
+    
+    /**
+     * Get localized strings for a specific locale
+     */
+    public static Map<String, String> getLocalizedStrings(Locale locale) {
+        Map<String, String> strings = new HashMap<>();
+        
+        try {
+            ResourceBundle bundle = ResourceBundle.getBundle(
+                "org.example.ltrrtl.i18n.strings", 
+                locale
+            );
+            
+            // Extract all keys
+            for (String key : bundle.keySet()) {
+                strings.put(key, bundle.getString(key));
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to load resource bundle for locale: " + locale);
+            // Fallback to English
+            try {
+                ResourceBundle fallback = ResourceBundle.getBundle(
+                    "org.example.ltrrtl.i18n.strings", 
+                    new Locale("en", "US")
+                );
+                for (String key : fallback.keySet()) {
+                    strings.put(key, fallback.getString(key));
+                }
+            } catch (Exception ex) {
+                // Use hardcoded defaults as last resort
+                strings.put("title", "BMI Calculator");
+                strings.put("weight", "Weight (kg):");
+                strings.put("height", "Height (cm):");
+                strings.put("calculate", "Calculate BMI");
+                strings.put("current_time", "Current Time: %s");
+                strings.put("time_format", "HH:mm:ss");
+                strings.put("bmi_result", "BMI: %.1f - %s");
+                strings.put("bmi_underweight", "Underweight");
+                strings.put("bmi_normal", "Normal weight");
+                strings.put("bmi_overweight", "Overweight");
+                strings.put("bmi_obese", "Obese");
+                strings.put("error_invalid_input", "Please enter valid numbers");
+            }
+        }
+        
+        return strings;
+    }
+}
+
+
+```
+
+
+
 > [!IMPORTANT]
 > `applyTextDirection()` must be called **after** all label texts have been set. This ensures the layout engine recalculates sizes with the correct content before flipping the direction.
 
@@ -519,6 +586,135 @@ All five languages from `BMIController.java` with their locale constructors and 
 | Persian | `"fa", "IR"` | RTL → | `onFAClick()` |
 
 ---
+## 6. Resource Bundle Files
+
+**File:** `src/main/resources/org/example/ltrrtl/i18n/strings_en.properties`
+
+```properties
+title=BMI Calculator
+weight=Weight (kg):
+height=Height (cm):
+calculate=Calculate BMI
+current_time=Current Time: %s
+time_format=HH:mm:ss
+bmi_result=BMI: %.1f - %s
+bmi_underweight=Underweight
+bmi_normal=Normal weight
+bmi_overweight=Overweight
+bmi_obese=Obese
+error_invalid_input=Please enter valid numbers
+
+```
+**File:** `src/main/resources/org/example/ltrrtl/i18n/strings_fr.properties`
+```properties
+title=Calculateur IMC
+weight=Poids (kg):
+height=Taille (cm):
+calculate=Calculer IMC
+current_time=Heure actuelle: %s
+time_format=HH:mm:ss
+bmi_result=IMC: %.1f - %s
+bmi_underweight=Insuffisance pondérale
+bmi_normal=Poids normal
+bmi_overweight=Surpoids
+bmi_obese=Obésité
+error_invalid_input=Veuillez entrer des nombres valides
+
+```
+**File:** ´src/main/resources/org/example/ltrrtl/i18n/strings_vi.properties´
+```properties
+title=Máy tính BMI
+weight=Cân nặng (kg):
+height=Chiều cao (cm):
+calculate=Tính BMI
+current_time=Thời gian hiện tại: %s
+time_format=HH:mm:ss
+bmi_result=BMI: %.1f - %s
+bmi_underweight=Thiếu cân
+bmi_normal=Cân nặng bình thường
+bmi_overweight=Thừa cân
+bmi_obese=Béo phì
+error_invalid_input=Vui lòng nhập số hợp lệ
+```
+**File:** ´src/main/resources/org/example/ltrrtl/i18n/strings_ur.properties´
+```properties
+title=بی ایم آئی کیلکولیٹر
+weight=وزن (کلوگرام):
+height=اونچائی (سینٹی میٹر):
+calculate=بی ایم آئی حساب کریں
+current_time=موجودہ وقت: %s
+time_format=HH:mm:ss
+bmi_result=بی ایم آئی: %.1f - %s
+bmi_underweight=کم وزن
+bmi_normal=معمولی وزن
+bmi_overweight=زیادہ وزن
+bmi_obese=موٹاپا
+error_invalid_input=براہ کرم درست نمبر درج کریں
+```
+**File:** ´src/main/resources/org/example/ltrrtl/i18n/strings_fa.properties´
+
+```properties
+title=محاسبه‌گر BMI
+weight=وزن (کیلوگرم):
+height=قد (سانتی‌متر):
+calculate=محاسبه BMI
+current_time=زمان فعلی: %s
+time_format=HH:mm:ss
+bmi_result=BMI: %.1f - %s
+bmi_underweight=کمبود وزن
+bmi_normal=وزن طبیعی
+bmi_overweight=اضافه وزن
+bmi_obese=چاقی
+error_invalid_input=لطفاً اعداد معتبر وارد کنید
+```
+# Step-by-Step Development Instructions
+## Step 1: Create the Maven Project
+1. Open your IDE (IntelliJ IDEA, Eclipse, or VS Code)
+2. Create a new Maven project with the structure shown above
+3. Update pom.xml with the dependencies provided
+
+## Step 2: Create the Resource Bundle Files
+1. Create the directory src/main/resources/org/example/ltrrtl/i18n/
+2. Create all five .properties files with the translations provided
+3. Verify that all property keys match exactly across all language files
+
+## Step 3: Create the FXML Layout
+1. Create bmi-view.fxml in src/main/resources/org/example/ltrrtl/
+2. Copy the FXML code exactly, ensuring:
+   - Root VBox has fx:id="rootVBox"
+   - All controls have their proper fx:id attributes
+   - Button actions match the method names in the controller
+
+## Step 4: Create the Java Classes
+1. Create the package structure org.example.ltrrtl.service
+2. Implement LocalizationService.java first (it has no dependencies)
+3. Implement BMICalculatorApp.java (the main application)
+4. Implement BMIController.java with all methods
+
+## Step 5: Build and Run
+```bash
+# From the project root directory
+mvn clean compile
+mvn javafx:run
+
+```
+## Step 6: Test the Application
+1. Test LTR languages: Click English, French, or Vietnamese buttons
+   - Verify the layout flows left-to-right
+   - Text in TextFields should be left-aligned
+   - Labels and buttons should align to the left
+
+2. Test RTL languages: Click Urdu or Persian buttons
+   - Verify the layout flips to right-to-left
+   - Text in TextFields should be right-aligned
+   - The entire UI should mirror horizontally
+   - The time format should respect the locale
+
+3. Test BMI Calculation:
+
+   - Enter weight (e.g., 70) and height (e.g., 175)
+   - Click "Calculate BMI"
+   - Verify the result appears correctly in the selected language
 
 ## 6. Common Mistakes
 
