@@ -36,6 +36,56 @@ JavaFX handles both directions through a single property: **`NodeOrientation`**.
 > Setting `NodeOrientation` on the **root** node automatically propagates the direction to **every child node** in the layout. You never need to set it on individual labels, buttons, or fields.
 
 ---
+# Step-by-Step Development Instructions
+## Step 1: Create the Maven Project
+1. Open your IDE (IntelliJ IDEA, Eclipse, or VS Code)
+2. Create a new Maven project with the structure shown above
+3. Update pom.xml with the dependencies provided
+
+## Step 2: Create the Resource Bundle Files
+1. Create the directory src/main/resources/org/example/ltrrtl/i18n/
+2. Create all five .properties files with the translations provided
+3. Verify that all property keys match exactly across all language files
+
+## Step 3: Create the FXML Layout
+1. Create bmi-view.fxml in src/main/resources/org/example/ltrrtl/
+2. Copy the FXML code exactly, ensuring:
+   - Root VBox has fx:id="rootVBox"
+   - All controls have their proper fx:id attributes
+   - Button actions match the method names in the controller
+
+## Step 4: Create the Java Classes
+1. Create the package structure org.example.ltrrtl.service
+2. Implement LocalizationService.java first (it has no dependencies)
+3. Implement BMICalculatorApp.java (the main application)
+4. Implement BMIController.java with all methods
+
+## Step 5: Build and Run
+```bash
+# From the project root directory
+mvn clean compile
+mvn javafx:run
+
+```
+## Step 6: Test the Application
+1. Test LTR languages: Click English, French, or Vietnamese buttons
+   - Verify the layout flows left-to-right
+   - Text in TextFields should be left-aligned
+   - Labels and buttons should align to the left
+
+2. Test RTL languages: Click Urdu or Persian buttons
+   - Verify the layout flips to right-to-left
+   - Text in TextFields should be right-aligned
+   - The entire UI should mirror horizontally
+   - The time format should respect the locale
+
+3. Test BMI Calculation:
+
+   - Enter weight (e.g., 70) and height (e.g., 175)
+   - Click "Calculate BMI"
+   - Verify the result appears correctly in the selected language
+
+
 
 ## 1. Project Structure Overview
 
@@ -682,54 +732,6 @@ bmi_overweight=اضافه وزن
 bmi_obese=چاقی
 error_invalid_input=لطفاً اعداد معتبر وارد کنید
 ```
-# Step-by-Step Development Instructions
-## Step 1: Create the Maven Project
-1. Open your IDE (IntelliJ IDEA, Eclipse, or VS Code)
-2. Create a new Maven project with the structure shown above
-3. Update pom.xml with the dependencies provided
-
-## Step 2: Create the Resource Bundle Files
-1. Create the directory src/main/resources/org/example/ltrrtl/i18n/
-2. Create all five .properties files with the translations provided
-3. Verify that all property keys match exactly across all language files
-
-## Step 3: Create the FXML Layout
-1. Create bmi-view.fxml in src/main/resources/org/example/ltrrtl/
-2. Copy the FXML code exactly, ensuring:
-   - Root VBox has fx:id="rootVBox"
-   - All controls have their proper fx:id attributes
-   - Button actions match the method names in the controller
-
-## Step 4: Create the Java Classes
-1. Create the package structure org.example.ltrrtl.service
-2. Implement LocalizationService.java first (it has no dependencies)
-3. Implement BMICalculatorApp.java (the main application)
-4. Implement BMIController.java with all methods
-
-## Step 5: Build and Run
-```bash
-# From the project root directory
-mvn clean compile
-mvn javafx:run
-
-```
-## Step 6: Test the Application
-1. Test LTR languages: Click English, French, or Vietnamese buttons
-   - Verify the layout flows left-to-right
-   - Text in TextFields should be left-aligned
-   - Labels and buttons should align to the left
-
-2. Test RTL languages: Click Urdu or Persian buttons
-   - Verify the layout flips to right-to-left
-   - Text in TextFields should be right-aligned
-   - The entire UI should mirror horizontally
-   - The time format should respect the locale
-
-3. Test BMI Calculation:
-
-   - Enter weight (e.g., 70) and height (e.g., 175)
-   - Click "Calculate BMI"
-   - Verify the result appears correctly in the selected language
 
 ## 6. Common Mistakes
 
