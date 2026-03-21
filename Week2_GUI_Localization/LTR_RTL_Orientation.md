@@ -566,6 +566,21 @@ public class LocalizationService {
 
 ```
 
+## Step 8: Understanding the Key Concepts
+### How NodeOrientation Works:
+  - When set on the root VBox, it automatically propagates to all children
+  - Labels, buttons, and containers all adjust their alignment
+  - This is a one-line solution for entire UI direction
+
+### Why Both NodeOrientation and -fx-text-alignment:
+   - NodeOrientation controls layout flow and cursor position
+   - -fx-text-alignment controls where typed text appears
+   - Both are needed for proper RTL text field behavior
+
+### Thread Safety:
+   - Platform.runLater() ensures UI updates happen on the JavaFX thread
+   - This is especially important if your app loads data asynchronously
+   - It's a safe practice even when not strictly required
 
 
 > [!IMPORTANT]
