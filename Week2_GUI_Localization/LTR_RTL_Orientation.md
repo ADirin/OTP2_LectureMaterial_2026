@@ -39,17 +39,260 @@ JavaFX handles both directions through a single property: **`NodeOrientation`**.
 
 ## 1. Project Structure Overview
 
+This application demonstrates how to switch between Left-to-Right (LTR) and Right-to-Left (RTL) layouts in JavaFX, supporting English (LTR), French (LTR), Vietnamese (LTR), Urdu (RTL), and Persian (RTL).
+## Maven Project Structure
+```text
+ltr-rtl-demo/
+├── pom.xml
+└── src/
+    └── main/
+        ├── java/
+        │   └── org/
+        │       └── example/
+        │           └── ltrrtl/
+        │               ├── BMIController.java
+        │               ├── BMICalculatorApp.java
+        │               └── service/
+        │                   └── LocalizationService.java
+        └── resources/
+            └── org/
+                └── example/
+                    └── ltrrtl/
+                        ├── bmi-view.fxml
+                        └── i18n/
+                            ├── strings_en.properties
+                            ├── strings_fr.properties
+                            ├── strings_vi.properties
+                            ├── strings_ur.properties
+                            └── strings_fa.properties
+
+
+
+```
+## 1. POM.XML
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>ltr-rtl-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javafx.version>17.0.6</javafx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>org.example.ltrrtl.BMICalculatorApp</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+```
+
+
 `BMIController.java` uses the **FXML pattern**. The root layout node is injected by the FXML loader via the `@FXML` annotation. The controller then manipulates it in code.
 ```java
 // Fields injected from the FXML file
-@FXML private VBox      rootVBox;       // <-- root layout node
-@FXML private Label     lblWeight;
-@FXML private Label     lblHeight;
-@FXML private TextField tfWeight;
-@FXML private TextField tfHeight;
-@FXML private Button    btnCalculate;
-@FXML private Label     lblResult;
-@FXML private Label     lblLocalTime;
+package org.example.ltrrtl;
+
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.geometry.NodeOrientation;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import org.example.ltrrtl.service.LocalizationService;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.Map;
+
+public class BMIController {
+    
+    @FXML private VBox rootVBox;
+    @FXML private Label lblTitle;
+    @FXML private Label lblWeight;
+    @FXML private Label lblHeight;
+    @FXML private TextField tfWeight;
+    @FXML private TextField tfHeight;
+    @FXML private Button btnCalculate;
+    @FXML private Label lblResult;
+    @FXML private Label lblLocalTime;
+    
+    private Locale currentLocale = new Locale("en", "US");
+    private Map<String, String> localizedStrings;
+    
+    /**
+     * Initialize the controller
+     */
+    @FXML
+    public void initialize() {
+        // Set initial language
+        setLanguage(currentLocale);
+        
+        // Add listeners to clear result when input changes
+        tfWeight.textProperty().addListener((obs, oldVal, newVal) -> lblResult.setText(""));
+        tfHeight.textProperty().addListener((obs, oldVal, newVal) -> lblResult.setText(""));
+    }
+    
+    /**
+     * Language button handlers
+     */
+    @FXML
+    public void onENClick(ActionEvent e) { setLanguage(new Locale("en", "US")); }
+    
+    @FXML
+    public void onFRClick(ActionEvent e) { setLanguage(new Locale("fr", "FR")); }
+    
+    @FXML
+    public void onVIClick(ActionEvent e) { setLanguage(new Locale("vi", "VN")); }
+    
+    @FXML
+    public void onURClick(ActionEvent e) { setLanguage(new Locale("ur", "PK")); }
+    
+    @FXML
+    public void onFAClick(ActionEvent e) { setLanguage(new Locale("fa", "IR")); }
+    
+    /**
+     * Calculate BMI button handler
+     */
+    @FXML
+    public void onCalculateClick(ActionEvent e) {
+        try {
+            double weight = Double.parseDouble(tfWeight.getText());
+            double height = Double.parseDouble(tfHeight.getText()) / 100.0; // Convert cm to m
+            
+            if (weight <= 0 || height <= 0) {
+                lblResult.setText(localizedStrings.getOrDefault("error_invalid_input", "Please enter valid numbers"));
+                return;
+            }
+            
+            double bmi = weight / (height * height);
+            String bmiCategory = getBMICategory(bmi);
+            
+            String result = String.format(localizedStrings.getOrDefault("bmi_result", "BMI: %.1f - %s"), bmi, bmiCategory);
+            lblResult.setText(result);
+            
+        } catch (NumberFormatException ex) {
+            lblResult.setText(localizedStrings.getOrDefault("error_invalid_input", "Please enter valid numbers"));
+        }
+    }
+    
+    /**
+     * Set the application language
+     */
+    private void setLanguage(Locale locale) {
+        currentLocale = locale;
+        lblResult.setText(""); // Clear previous result
+        
+        // Load localized strings
+        localizedStrings = LocalizationService.getLocalizedStrings(locale);
+        
+        // Update all UI text
+        lblTitle.setText(localizedStrings.getOrDefault("title", "BMI Calculator"));
+        lblWeight.setText(localizedStrings.getOrDefault("weight", "Weight (kg):"));
+        lblHeight.setText(localizedStrings.getOrDefault("height", "Height (cm):"));
+        btnCalculate.setText(localizedStrings.getOrDefault("calculate", "Calculate BMI"));
+        
+        // Update time display with new locale
+        displayLocalTime(locale);
+        
+        // Apply text direction based on language
+        applyTextDirection(locale);
+    }
+    
+    /**
+     * Apply LTR or RTL layout direction
+     */
+    private void applyTextDirection(Locale locale) {
+        // Step 1: Detect if the language is RTL
+        String lang = locale.getLanguage();
+        boolean isRTL = lang.equals("fa")   // Persian
+                     || lang.equals("ur")   // Urdu
+                     || lang.equals("ar")   // Arabic
+                     || lang.equals("he");  // Hebrew
+        
+        // Step 2: Wrap UI changes in Platform.runLater() for thread safety
+        Platform.runLater(() -> {
+            // Step 3: Set NodeOrientation on the root VBox
+            if (rootVBox != null) {
+                rootVBox.setNodeOrientation(
+                    isRTL ? NodeOrientation.RIGHT_TO_LEFT
+                          : NodeOrientation.LEFT_TO_RIGHT
+                );
+            }
+            
+            // Step 4: Align text inside TextFields
+            String alignment = isRTL ? "-fx-text-alignment: right; -fx-alignment: center-right;"
+                                     : "-fx-text-alignment: left; -fx-alignment: center-left;";
+            tfWeight.setStyle(alignment);
+            tfHeight.setStyle(alignment);
+        });
+    }
+    
+    /**
+     * Display local time formatted for the current locale
+     */
+    private void displayLocalTime(Locale locale) {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+            localizedStrings.getOrDefault("time_format", "HH:mm:ss")
+        ).withLocale(locale);
+        
+        String timeStr = String.format(
+            localizedStrings.getOrDefault("current_time", "Current Time: %s"),
+            now.format(formatter)
+        );
+        lblLocalTime.setText(timeStr);
+    }
+    
+    /**
+     * Get BMI category based on value
+     */
+    private String getBMICategory(double bmi) {
+        if (bmi < 18.5) {
+            return localizedStrings.getOrDefault("bmi_underweight", "Underweight");
+        } else if (bmi < 25) {
+            return localizedStrings.getOrDefault("bmi_normal", "Normal weight");
+        } else if (bmi < 30) {
+            return localizedStrings.getOrDefault("bmi_overweight", "Overweight");
+        } else {
+            return localizedStrings.getOrDefault("bmi_obese", "Obese");
+        }
+    }
+}
 ```
 
 > [!IMPORTANT]
