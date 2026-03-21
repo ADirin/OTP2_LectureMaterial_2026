@@ -38,7 +38,7 @@ JavaFX handles both directions through a single property: **`NodeOrientation`**.
 ---
 # Step-by-Step Development Instructions
 ## Step 1: Create the Maven Project
-1. Create a new Maven project with the structure shown above
+1. Create a new Maven project based on the given project structure bellow
 2. Update pom.xml with the dependencies provided
 
 ## Step 2: Create the Resource Bundle Files
@@ -49,7 +49,7 @@ JavaFX handles both directions through a single property: **`NodeOrientation`**.
 ## Step 3: Create the FXML Layout
 1. Create bmi-view.fxml in src/main/resources/org/example/ltrrtl/
 2. Copy the FXML code exactly, ensuring:
-   - Root VBox has fx:id="rootVBox"
+   - Root VBox has **fx:id="rootVBox"**
    - All controls have their proper fx:id attributes
    - Button actions match the method names in the controller
 
