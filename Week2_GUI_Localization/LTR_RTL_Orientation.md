@@ -38,9 +38,8 @@ JavaFX handles both directions through a single property: **`NodeOrientation`**.
 ---
 # Step-by-Step Development Instructions
 ## Step 1: Create the Maven Project
-1. Open your IDE (IntelliJ IDEA, Eclipse, or VS Code)
-2. Create a new Maven project with the structure shown above
-3. Update pom.xml with the dependencies provided
+1. Create a new Maven project with the structure shown above
+2. Update pom.xml with the dependencies provided
 
 ## Step 2: Create the Resource Bundle Files
 1. Create the directory src/main/resources/org/example/ltrrtl/i18n/
