@@ -1,3 +1,7 @@
+![Face-to-Face_Lecture Demo] (https://github.com/ADirin/SEP2_Week2_LectDemo_AvgSpd.git)
+
+
+
 # JavaFX UI Orientation Guide
 ### Switching Between LTR and Right-to-Left (RTL)
 > Based on `BMIController.java` 
