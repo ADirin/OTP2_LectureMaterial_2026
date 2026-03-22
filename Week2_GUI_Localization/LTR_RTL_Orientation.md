@@ -2,7 +2,7 @@
 
 
 
-# JavaFX UI Orientation Guide
+# Step by step instruction on JavaFX UI Orientation and localization with example
 ### Switching Between LTR and Right-to-Left (RTL)
 > Based on `BMIController.java` 
 
