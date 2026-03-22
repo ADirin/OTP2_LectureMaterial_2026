@@ -166,7 +166,56 @@ ltr-rtl-demo/
 </project>
 
 ```
+````fxml
+<VBox fx:id="rootVBox"
+      xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.ltrrtl.BMIController"
+      spacing="15"
+      alignment="TOP_CENTER"
+      style="-fx-padding: 20; -fx-background-color: #f0f0f0;">
 
+    <!-- Title -->
+    <Label fx:id="lblTitle"
+           text="BMI Calculator"
+           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <!-- Language Selection Buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="English" onAction="#onENClick" style="-fx-font-weight: bold;"/>
+        <Button text="Français" onAction="#onFRClick"/>
+        <Button text="Tiếng Việt" onAction="#onVIClick"/>
+        <Button text="اردو" onAction="#onURClick"/>
+        <Button text="فارسی" onAction="#onFAClick"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- BMI Input Fields -->
+    <GridPane hgap="10" vgap="10" alignment="CENTER">
+        <Label fx:id="lblWeight" text="Weight (kg):" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="tfWeight" promptText="Enter weight" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="200"/>
+
+        <Label fx:id="lblHeight" text="Height (cm):" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="tfHeight" promptText="Enter height" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200"/>
+
+        <Button fx:id="btnCalculate" text="Calculate BMI" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                GridPane.columnSpan="2" onAction="#onCalculateClick" prefWidth="200"/>
+    </GridPane>
+
+    <Separator/>
+
+    <!-- Result Display -->
+    <Label fx:id="lblResult" text="" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <Separator/>
+
+    <!-- Time Display -->
+    <Label fx:id="lblLocalTime" text="" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+
+</VBox>
+
+````
 
 `BMIController.java` uses the **FXML pattern**. The root layout node is injected by the FXML loader via the `@FXML` annotation. The controller then manipulates it in code.
 ```java
