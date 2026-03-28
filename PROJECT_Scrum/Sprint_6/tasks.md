@@ -1,5 +1,5 @@
 # OTP2/AD 2026
-## Sprint 5: UI Localization
+## Sprint 6: Database Localization
 
 ### Important Notes for Students
 
